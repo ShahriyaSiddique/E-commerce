@@ -54,4 +54,10 @@
     <string name="enter_address">Enter Address</string>
     <string name="enter_city">Enter City Name</string>
     <string name="confirm">Confirm</string>
+    <string name="congratulations_before_shipped">Congratulations! Your final order has been placed successfully. Soon it will be verified</string>
+    <string name="congratulations_after_shipped">Congratulations! Your final order has been shipped successfully. Soon you will receive your order</string>
+    <string name="add_to_cart">Add to cart</string>
+    <string name="check_new_order">Check New Order</string>
+    <string name="new_orders">New Orders</string>
+    <string name="show_this_order_products">Show This Order Products</string>
 </resources>

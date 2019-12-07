@@ -24,15 +24,18 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class CartActivity extends AppCompatActivity {
 
     private RecyclerView cartListRL;
     private RecyclerView.LayoutManager layoutManager;
     private Button nextBtn;
-    private TextView totalPriceTV;
+    private TextView totalPriceTV,messageTV;
     private int totalPrice=0;
 
     @Override
@@ -47,6 +50,7 @@ public class CartActivity extends AppCompatActivity {
 
         nextBtn = findViewById(R.id.next_btn);
         totalPriceTV = findViewById(R.id.total_price);
+        messageTV = findViewById(R.id.message1);
 
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +69,8 @@ public class CartActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
+        checkOrderState();
 
         final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("Cart List");
 
@@ -144,5 +150,50 @@ public class CartActivity extends AppCompatActivity {
 
         cartListRL.setAdapter(adapter);
         adapter.startListening();
+    }
+
+    private void checkOrderState()
+    {
+        DatabaseReference orderRef = FirebaseDatabase.getInstance().getReference()
+                .child("Orders")
+                .child(Prevalent.currentOnlineUser.getPhone());
+
+        orderRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+
+                if(dataSnapshot.exists())
+                {
+                    String shippingState = dataSnapshot.child("state").getValue().toString() ;
+                    String userName= dataSnapshot.child("name").getValue().toString() ;
+                    String totalPrice= dataSnapshot.child("totalPrice").getValue().toString() ;
+                    if (shippingState.equals("shipped"))
+                    {
+                        totalPriceTV.setText("Dear "+ userName + "\n Order is shipped \n Total bill is "+totalPrice);
+                        cartListRL.setVisibility(View.GONE);
+                        messageTV.setText(R.string.congratulations_after_shipped);
+                        messageTV.setVisibility(View.VISIBLE);
+                        nextBtn.setVisibility(View.GONE);
+
+                    }
+                    else if (shippingState.equals("Not shipped"))
+                    {
+                        totalPriceTV.setText("Shipping state = "+ shippingState);
+                        cartListRL.setVisibility(View.GONE);
+
+                        messageTV.setVisibility(View.VISIBLE);
+                        nextBtn.setVisibility(View.GONE);
+
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 }

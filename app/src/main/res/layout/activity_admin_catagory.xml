@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:text="@string/add_new_product"
         android:textAlignment="center"
         android:textSize="25sp"
@@ -26,7 +26,7 @@
          android:layout_width="match_parent"
          android:layout_height="100dp"
          android:layout_below="@+id/category_title"
-         android:layout_marginTop="50dp"
+         android:layout_marginTop="10dp"
          android:orientation="horizontal"
          android:layout_centerHorizontal="true"
          >
@@ -71,7 +71,7 @@
          android:layout_width="match_parent"
          android:layout_height="100dp"
          android:layout_below="@+id/category_linear_layout_1"
-         android:layout_marginTop="50dp"
+         android:layout_marginTop="10dp"
          android:orientation="horizontal"
          android:layout_centerHorizontal="true"
          >
@@ -118,7 +118,8 @@
          android:layout_width="match_parent"
          android:layout_height="100dp"
          android:layout_below="@+id/category_linear_layout_2"
-         android:layout_marginTop="50dp"
+         android:layout_above="@+id/check_order_btn"
+         android:layout_marginTop="10dp"
          android:orientation="horizontal"
          android:layout_centerHorizontal="true"
          >
@@ -161,5 +162,33 @@
 
      </LinearLayout>
 
+    <Button
+        android:id="@+id/check_order_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/admin_logout_btn"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="@string/check_new_order"
+        android:textSize="20sp"
+        android:textColor="@android:color/white"
+        />
+    <Button
+        android:id="@+id/admin_logout_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="@string/log_out"
+        android:textSize="20sp"
+        android:textColor="@android:color/white"
+
+
+        />
 
 </RelativeLayout>
