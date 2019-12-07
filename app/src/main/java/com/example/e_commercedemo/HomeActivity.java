@@ -174,15 +174,24 @@ adapter.startListening();
                 finish();
                 break;
             }
+
             case R.id.nav_setting:
             {
                 startActivity(new Intent(HomeActivity.this,SettingActivity.class));
                 break;
             }
+
             case R.id.nav_cart:
             {
                 startActivity(new Intent(HomeActivity.this,CartActivity.class));
                 break;
+            }
+
+            case R.id.nav_search:
+            {
+                startActivity(new Intent(HomeActivity.this,SearchActivity.class));
+                break;
+
             }
 
         }

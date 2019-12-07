@@ -60,4 +60,5 @@
     <string name="check_new_order">Check New Order</string>
     <string name="new_orders">New Orders</string>
     <string name="show_this_order_products">Show This Order Products</string>
+    <string name="search">Search</string>
 </resources>

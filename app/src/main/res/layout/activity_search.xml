@@ -20,7 +20,7 @@
            android:id="@+id/search_product_name"
            android:layout_width="290dp"
            android:layout_height="wrap_content"
-           android:hint="Product Name"
+           android:hint="@string/product_name"
            android:background="@android:color/white"
            android:textColorHint="@android:color/holo_blue_dark"
            android:textSize="18sp"
@@ -30,11 +30,12 @@
            />
 
         <Button
+            android:id="@+id/search_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/search_product_name"
             android:textColor="@android:color/white"
-            android:text="Search"
+            android:text="@string/search"
             android:textSize="16sp"
             android:textStyle="bold"
             android:background="@color/colorPrimaryDark"
